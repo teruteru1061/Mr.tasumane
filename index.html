@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク管理アプリ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').then(() => {
+                console.log('Service Worker Registered');
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>タスマネくん</h1>
+            <button id="addTaskButton">タスクを追加</button>
+        </header>
+        <main>
+            <div id="taskSummary">
+                <p id="taskMessage">今日も素晴らしい！</p>
+                <p id="taskCount">現在のタスク数: 0</p>
+            </div>
+            <ul id="taskList">
+                <!-- タスクがここに表示されます -->
+            </ul>
+        </main>
+    </div>
+
+    <!-- タスク追加モーダル -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>新しいタスク</h2>
+            <form id="taskForm">
+                <label for="taskName">名称:</label>
+                <input type="text" id="taskName" required>
+
+                <label for="taskDeadline">締切日:</label>
+                <input type="date" id="taskDeadline" required>
+
+                <label for="taskNotes">備考:</label>
+                <textarea id="taskNotes"></textarea>
+
+                <button type="submit">追加</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
 
